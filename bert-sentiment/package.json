@@ -1,0 +1,35 @@
+{
+  "name": "node-red-bert-sentiment",
+  "version": "1.0.0",
+  "description": "BERT model to classify sentiment of a sentence",
+  "dependencies": {
+      "@tensorflow/tfjs": "*",
+      "@tensorflow/tfjs-node": "*",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonanhngo/nodered-tfjs.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "nodered",
+    "nodejs",
+    "tfjs",
+    "tensorflow",
+    "deeplearning"
+  ],
+  "author": {
+    "name": "Ton Ngo",
+    "email": "ton@us.ibm.com",
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tonanhngo/nodered-tfjs/issues"
+  },
+  "homepage": "https://github.com/tonanhngo/nodered-tfjs#readme",
+  "node-red": {
+    "nodes": {
+      "bert-sentiment": "bert-sentiment.js"
+    }
+  }
+}
