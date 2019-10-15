@@ -22,15 +22,42 @@ module.exports = function(RED) {
         	const MAX_INPUT_LENGTH = 15; 
         	
         	// This is the tokenization of '[CLS] Hello, my dog is cute. [SEP]'.
+        	//const input_ids = tf.tensor1d(
+        	//    [101, 7592, 1010, 2026, 3899, 2003, 10140, 1012, 102, 0, 0, 0, 0, 0, 0], 'int32').pad([[0,128-MAX_INPUT_LENGTH]]).expandDims();
+
+        	//const segment_ids = tf.tensor1d(
+        	//    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'int32').pad([[0, 128 - MAX_INPUT_LENGTH]]).expandDims();
+
+        	//const input_mask = tf.tensor1d(
+        	//    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0], 'int32').pad([[0, 128 - MAX_INPUT_LENGTH]]).expandDims(0);
+
+        	console.log("Received tokens:  ");
+        	console.log(msg.payload);
+        	
+        	// Pad the tokens received up to the MAX_INPUT_LENGTH
+        	rcv_tokens = JSON.parse("[" + msg.payload + "]");
+        	padded_tokens = rcv_tokens.slice();
+        	if (padded_tokens.length < MAX_INPUT_LENGTH) {
+        		padded_tokens.length = MAX_INPUT_LENGTH;
+        		padded_tokens.fill(0,rcv_tokens.length,MAX_INPUT_LENGTH);
+        	}
+        	console.log(padded_tokens);
         	const input_ids = tf.tensor1d(
-        	    [101, 7592, 1010, 2026, 3899, 2003, 10140, 1012, 102, 0, 0, 0, 0, 0, 0], 'int32').pad([[0,128-MAX_INPUT_LENGTH]]).expandDims();
-
+        			padded_tokens, 'int32').pad([[0,128-MAX_INPUT_LENGTH]]).expandDims();
+        	
+        	// Create the segment ID
+        	segment = new Array(MAX_INPUT_LENGTH).fill(0);
+        	console.log(segment);
         	const segment_ids = tf.tensor1d(
-        	    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'int32').pad([[0, 128 - MAX_INPUT_LENGTH]]).expandDims();
+        	    segment, 'int32').pad([[0, 128 - MAX_INPUT_LENGTH]]).expandDims();
 
+        	// Create the input mask:  1 for the tokens received, padded with 0 up to MAX_INPUT_LENGTH
+        	mask = segment.fill(1,0,rcv_tokens.length);
         	const input_mask = tf.tensor1d(
-        	    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0], 'int32').pad([[0, 128 - MAX_INPUT_LENGTH]]).expandDims(0);
-
+        	    mask, 'int32').pad([[0, 128 - MAX_INPUT_LENGTH]]).expandDims(0);
+        	console.log(mask);
+        	
+        	
         	//const layer = node.loaded_model.execute({'segment_ids_1': segment_ids, 'input_ids_1': input_ids, 'input_mask_1': input_mask},
             //	'loss/Softmax');
         	const layer = node.loaded_model.predict({'segment_ids_1': segment_ids, 'input_ids_1': input_ids, 'input_mask_1': input_mask});
