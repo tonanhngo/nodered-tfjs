@@ -4,7 +4,7 @@
     "type": "bert-sentiment",
     "z": "aeadfe1.4135d",
     "name": "Bert Sentiment Analysis",
-    "model": "file:///Users/ton/Documents/workspace/AI/TFJS-bert/bert-sentiment-tfjs/public/model/model.json",
+    "model": "http://127.0.0.1:8080/model.json",
     "x": 350,
     "y": 200,
     "wires": [
