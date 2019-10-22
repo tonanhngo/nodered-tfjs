@@ -1,0 +1,34 @@
+﻿[
+  {
+    "id": "3538139e.e9449c",
+    "type": "twitter in",
+    "z": "b7b3038a.047e3",
+    "twitter": "",
+    "tags": "#tensorflow",
+    "user": "false",
+    "name": "tango245",
+    "inputs": 1,
+    "x": 100,
+    "y": 240,
+    "wires": [
+      [
+        "fb9fc13a.6926f"
+      ]
+    ]
+  },
+  {
+    "id": "fb9fc13a.6926f",
+    "type": "debug",
+    "z": "b7b3038a.047e3",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 320,
+    "y": 240,
+    "wires": []
+  }
+]
