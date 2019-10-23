@@ -1,0 +1,26 @@
+{
+  "name": "nodered-tfjs",
+  "version": "1.0.0",
+  "description": "A Node-RED application to use bert-tokenizer and bert-sentiment",
+  "main": "",
+  "scripts": {
+    "start": "node node_modules/.bin/node-red -s settings.js flow.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonanhngo/nodered-tfjs.git"
+  },
+  "author": "Ton Ngo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tonanhngo/nodered-tfjs/issues"
+  },
+  "homepage": "https://github.com/tonanhngo/nodered-tfjs#readme",
+  "dependencies": {
+    "node-red": "^1.0.1",
+    "node-red-contrib-browser-utils": "0.0.9",
+    "node-red-bert-sentiment": "file:bert-sentiment",
+    "node-red-bert-tokens": "file:bert-tokenizer"
+  }
+}
