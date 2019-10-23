@@ -1,0 +1,24 @@
+{
+  "name": "node-red-contrib-tfjs-object-detection",
+  "version": "1.0.0",
+  "description": "Object detection model that aims to localize and identify multiple objects in a single image.",
+  "dependencies": {
+      "@tensorflow-models/coco-ssd": "^2.0.0",
+      "@tensorflow/tfjs-node": "1.2.11"
+  },
+  "main": "object-detection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tfjs",
+    "node-red"
+  ],
+  "author": "pvaneck@us.ibm.com",
+  "license": "Apache-2.0",
+  "node-red" : {
+    "nodes": {
+        "object-detection": "object-detection.js"
+    }
+  }
+}
