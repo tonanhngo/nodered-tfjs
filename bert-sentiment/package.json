@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "BERT model to classify sentiment of a sentence",
   "dependencies": {
-      "@tensorflow/tfjs": "*",
-      "@tensorflow/tfjs-node": "*"
+    "@tensorflow/tfjs": "*",
+    "@tensorflow/tfjs-node": "*"
   },
   "repository": {
     "type": "git",
