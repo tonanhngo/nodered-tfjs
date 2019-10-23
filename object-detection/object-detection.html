@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('object-detection',{
+        category: 'analysis-function',
+        color: '#FF54EF',
+        defaults: {
+            name: { value: "Object Detection Model" },
+        },
+        inputs:1,
+        outputs:1,
+        icon: "font-awesome/object-group",
+        label: function() {
+            return this.name||"object-detection";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="object-detection">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Node name">
+    </div>
+   	<br/>t type="text" id="node-input-model" placeholder="e.g. file:///mymodel.json">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="object-detection">
+    <p>
+      Localize and identify multiple objects in a single image. This uses the TensorFlow.js port
+      of the COCO-SSD model. This model is capable of detecting 90 classes of objects.
+    </p>
+</script>
