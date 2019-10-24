@@ -19,8 +19,8 @@
   "homepage": "https://github.com/tonanhngo/nodered-tfjs#readme",
   "dependencies": {
     "node-red": "^1.0.1",
-    "node-red-contrib-browser-utils": "0.0.9",
     "node-red-bert-sentiment": "file:bert-sentiment",
-    "node-red-bert-tokens": "file:bert-tokenizer"
+    "node-red-bert-tokens": "file:bert-tokenizer",
+    "node-red-contrib-browser-utils": "0.0.9"
   }
 }
