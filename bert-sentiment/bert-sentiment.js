@@ -18,8 +18,8 @@ module.exports = function(RED) {
 						return pred.squeeze([0]);
 					});
 					resarr = res.arraySync()
-					msg.predict = {"positive":resarr[0], "negative":resarr[1]};
-          node.send(msg.predict);
+					msg.payload = {"positive":resarr[0], "negative":resarr[1]};
+          node.send(msg);
         });
     }
     RED.nodes.registerType("bert-sentiment",BertSentimentNode);
