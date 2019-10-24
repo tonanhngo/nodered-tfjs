@@ -1,1 +1,211 @@
-[{"id":"f24d3b69.c7a43","type":"tab","label":"Twitter Sentiment Analysis","disabled":false,"info":""},{"id":"924fbcf7.eb6768","type":"twitter-credentials","z":"","screen_name":"tedhtchang"},{"id":"18783820.220bc","type":"tokens","z":"f24d3b69.c7a43","name":"tokenizer","x":242,"y":255,"wires":[["a2d33080.4203e"]]},{"id":"e48f6b5d.7c9568","type":"debug","z":"f24d3b69.c7a43","name":"Show Sentiment","active":true,"tosidebar":true,"console":true,"tostatus":false,"complete":"payload","targetType":"msg","x":549,"y":346,"wires":[]},{"id":"a2d33080.4203e","type":"bert-sentiment","z":"f24d3b69.c7a43","name":"Bert model","model":"http://localhost:3000/model/model.json","x":248,"y":345,"wires":[["e48f6b5d.7c9568"]]},{"id":"c3949f3e.18fc2","type":"twitter in","z":"f24d3b69.c7a43","twitter":"924fbcf7.eb6768","tags":"#tensorflow","user":"false","name":"","inputs":1,"x":233,"y":33,"wires":[["cd8156a0.26d738"]]},{"id":"cd8156a0.26d738","type":"function","z":"f24d3b69.c7a43","name":"Sanitize","func":"function stripPunctuation(text){\n  text = text.replace(/[,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]/g,\"\");\n  text = text.replace(/[\\t\\n\\r]/g, \"\")\n  return text;\n}\nvar payload = msg.payload;\nmsg.payload = stripPunctuation(payload);\nreturn msg;","outputs":1,"noerr":0,"x":243,"y":161,"wires":[["18783820.220bc","bdaa63e3.e58d78"]]},{"id":"bdaa63e3.e58d78","type":"debug","z":"f24d3b69.c7a43","name":"Show Tweet","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","targetType":"msg","x":504,"y":160,"wires":[]}]
+﻿[
+  {
+    "id": "18783820.220bc",
+    "type": "tokens",
+    "z": "f24d3b69.c7a43",
+    "name": "tokenizer",
+    "x": 242,
+    "y": 255,
+    "wires": [
+      [
+        "a2d33080.4203e"
+      ]
+    ]
+  },
+  {
+    "id": "e48f6b5d.7c9568",
+    "type": "debug",
+    "z": "f24d3b69.c7a43",
+    "name": "Show Sentiment",
+    "active": true,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 549,
+    "y": 346,
+    "wires": []
+  },
+  {
+    "id": "a2d33080.4203e",
+    "type": "bert-sentiment",
+    "z": "f24d3b69.c7a43",
+    "name": "Bert model",
+    "model": "http://localhost:3000/model/model.json",
+    "x": 248,
+    "y": 345,
+    "wires": [
+      [
+        "e48f6b5d.7c9568",
+        "b8009b27.8b5338"
+      ]
+    ]
+  },
+  {
+    "id": "c3949f3e.18fc2",
+    "type": "twitter in",
+    "z": "f24d3b69.c7a43",
+    "twitter": "",
+    "tags": "#TensorFlow",
+    "user": "false",
+    "name": "",
+    "inputs": 1,
+    "x": 233,
+    "y": 33,
+    "wires": [
+      [
+        "cd8156a0.26d738"
+      ]
+    ]
+  },
+  {
+    "id": "cd8156a0.26d738",
+    "type": "function",
+    "z": "f24d3b69.c7a43",
+    "name": "Sanitize",
+    "func": "function stripPunctuation(text){\n  text = text.replace(/[,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]/g,\"\");\n  text = text.replace(/[\\t\\n\\r]/g, \"\")\n  return text;\n}\nvar payload = msg.payload;\nmsg.payload = stripPunctuation(payload);\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 243,
+    "y": 161,
+    "wires": [
+      [
+        "18783820.220bc",
+        "bdaa63e3.e58d78"
+      ]
+    ]
+  },
+  {
+    "id": "bdaa63e3.e58d78",
+    "type": "debug",
+    "z": "f24d3b69.c7a43",
+    "name": "Show Tweet",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 504,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "b8009b27.8b5338",
+    "type": "function",
+    "z": "f24d3b69.c7a43",
+    "name": "Total",
+    "func": "var pos_count = context.get('pos_count')||0;\nvar neg_count = context.get('neg_count')||0;\nif (msg.payload==\"clear\") {\n    console.log(\"Reset count to 0.\")\n    pos_count = 0;\n    neg_count = 0;\n    context.set('pos_count',pos_count);\n    context.set('neg_count',neg_count);\n}\nif (msg.payload[\"positive\"] > 0.5) {\n    console.log(\"Positive\");\n    pos_count += 1;\n    // store the value back in context\n    context.set('pos_count',pos_count);\n    // put it in the outgoing msg object\n    msg.topic = \"Positive\";\n    msg.payload = pos_count;\n} \nif (msg.payload[\"negative\"] > 0.5){\n    console.log(\"Negative\");\n    neg_count += 1;\n    // store the value back in context\n    context.set('neg_count',neg_count);\n    // put it in the outgoing msg object\n    msg.topic = \"Negative\";\n    msg.payload = neg_count;\n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 450,
+    "y": 420,
+    "wires": [
+      [
+        "4d29652.f1e4b9c"
+      ]
+    ]
+  },
+  {
+    "id": "4d29652.f1e4b9c",
+    "type": "ui_chart",
+    "z": "f24d3b69.c7a43",
+    "name": "Chart",
+    "group": "f7a71d53.50b8f",
+    "order": 0,
+    "width": "6",
+    "height": "5",
+    "label": "Sentiment",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "mm:ss",
+    "interpolate": "linear",
+    "nodata": "Waiting for twitter feed ...",
+    "dot": false,
+    "ymin": "0",
+    "ymax": "",
+    "removeOlder": 1,
+    "removeOlderPoints": "",
+    "removeOlderUnit": "60",
+    "cutout": 0,
+    "useOneColor": false,
+    "colors": [
+      "#1f77b4",
+      "#e83029",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#9d98d6",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "useOldStyle": false,
+    "outputs": 1,
+    "x": 610,
+    "y": 420,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b55a6ff7.0a06e",
+    "type": "inject",
+    "z": "f24d3b69.c7a43",
+    "name": "Reset count",
+    "topic": "",
+    "payload": "clear",
+    "payloadType": "str",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "x": 250,
+    "y": 460,
+    "wires": [
+      [
+        "b8009b27.8b5338"
+      ]
+    ]
+  },
+  {
+    "id": "e7174316.01a0b",
+    "type": "inject",
+    "z": "f24d3b69.c7a43",
+    "name": "Clear chart",
+    "topic": "",
+    "payload": "[]",
+    "payloadType": "json",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "x": 440,
+    "y": 540,
+    "wires": [
+      [
+        "4d29652.f1e4b9c"
+      ]
+    ]
+  },
+  {
+    "id": "f7a71d53.50b8f",
+    "type": "ui_group",
+    "z": "",
+    "name": "Twitter",
+    "tab": "ecb45bd0.ba2888",
+    "disp": true,
+    "width": "6",
+    "collapse": false
+  },
+  {
+    "id": "ecb45bd0.ba2888",
+    "type": "ui_tab",
+    "z": "",
+    "name": "Home",
+    "icon": "dashboard",
+    "disabled": false,
+    "hidden": false
+  }
+]
