@@ -7,12 +7,10 @@ module.exports = function(RED) {
     RED.nodes.createNode(this, config);
     var node = this;
 
-    RED.events.on("nodes-started", function() {
-      cocoSsd.load().then(model => {
-        node.loadedModel = model;
-        console.log('Object Detection Model Loaded');
-      });
-    })
+    cocoSsd.load().then(model => {
+      node.loadedModel = model;
+      console.log('Object Detection Model Loaded');
+    });
 
     node.on('input', function(msg) {
       const imgTensor = tf.node.decodeImage(new Uint8Array(msg.payload), channels = 3);
