@@ -5,11 +5,13 @@ module.exports = function(RED) {
 
   function ObjectDetectionNode(config) {
     RED.nodes.createNode(this, config);
-    var node = this;
 
-    cocoSsd.load().then(model => {
+    this.modelUrl = config.modelUrl;
+    const node = this;
+
+    cocoSsd.load({modelUrl: node.modelUrl}).then(model => {
       node.loadedModel = model;
-      console.log('Object Detection Model Loaded');
+      console.log('Object Detection Model Loaded.');
     });
 
     node.on('input', function(msg) {
