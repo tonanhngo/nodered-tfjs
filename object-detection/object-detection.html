@@ -4,6 +4,7 @@
         color: '#FF9BF6',
         defaults: {
             name: { value: "Object Detection Model" },
+            modelUrl: { value: "" }
         },
         inputs:1,
         outputs:1,
@@ -18,6 +19,15 @@
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Node name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-model"><i class="fa fa-globe"></i> Model URL</label>
+        <input type="text" id="node-input-modelUrl" placeholder="e.g. http://localhost/model/model.json...">
+    </div>
+    <div>
+      <small>
+        If no URL is specified, then a model will be downloaded from a default public endpoint.
+      </small>
     </div>
 </script>
 
