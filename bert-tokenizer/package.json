@@ -29,7 +29,6 @@
     }
   },
   "dependencies": {
-    "@tensorflow/tfjs": "*",
     "@tensorflow/tfjs-node": "*",
     "bert-sentiment-tfjs": "file:../bert-sentiment-tfjs"
   }

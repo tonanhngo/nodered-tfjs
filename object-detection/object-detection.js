@@ -9,8 +9,11 @@ module.exports = function(RED) {
     this.modelUrl = config.modelUrl;
     const node = this;
 
+    node.status({fill:'yellow', shape:'dot', text:'Loading model...'});
+
     cocoSsd.load({modelUrl: node.modelUrl}).then(model => {
       node.loadedModel = model;
+      node.status({fill:'green', shape:'dot', text:'Model is ready'});
       console.log('Object Detection Model Loaded.');
     });
 
