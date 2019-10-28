@@ -1,15 +1,13 @@
 # nodered-tfjs
 Node-RED modules for TensorFlow JavaScript models and data processing.
 
-Instruction:
-1. ```git clone https://github.com/tedhtchang/bert-sentiment-tfjs.git```
+### Instruction:
+Follow the instruction to setup the demo Node-RED flow and run it locally from the repo directory.
 
-2. ```cd bert-sentiment-tfjs; npm install; cp patch/tf-core.* node_modules/@tensorflow/tfjs-core/dist/; npm run build; cd ..```
-
-3. ```cd bert-sentiment; npm install; cd ..```
-
-4. ```cd bert-tokenizer; npm install; cd ..```
-
-5. Make sure http://localhost:3000/model/model.json and http://localhost:3000/vocab.json are available. Move the tfjs web friendly model files under bert-sentiment-tfjs/public/model/. In another terminal start the server ```cd bert-sentiment-tfjs; npm run start```.
-
-6. ```npm install; npm run start```
+1. ```git clon https://github.com/tonanhngo/nodered-tfjs.git; cd nodered-tfjs```
+2. ```git clone https://github.com/tedhtchang/bert-sentiment-tfjs.git```
+3. ```cd bert-sentiment-tfjs; npm install; npm run build; cd ..```
+4. ```cd bert-sentiment; npm install; cd ..```
+5. ```cd bert-tokenizer; npm install; cd ..```
+6. Move the tfjs web friendly model files under bert-sentiment-tfjs/public/model/ directory.
+7. ```npm install; npm run start```
