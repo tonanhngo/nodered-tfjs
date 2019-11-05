@@ -4,7 +4,7 @@
   "description": "A Node-RED application to use bert-tokenizer and bert-sentiment",
   "main": "",
   "scripts": {
-    "start": "concurrently \"cd bert-sentiment-tfjs && npm run start\" \"node node_modules/.bin/node-red -s settings.js flow.json\"",
+    "start": "concurrently \"node node_modules/bert-sentiment-tfjs/dist/server/index.js\" \"node-red -s settings.js flow.json\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
