@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs-node": "*",
-    "bert-sentiment-tfjs": "file:../bert-sentiment-tfjs"
+    "typescript": "~3.5.3",
+    "bert-sentiment-tfjs": "tedhtchang/bert-sentiment-tfjs#master"
   }
 }
