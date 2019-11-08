@@ -1,0 +1,28 @@
+{
+    "name": "node-red-contrib-tensorflowjs",
+    "version": "0.0.2",
+    "description": "A Node-RED node that provides a function like node with tensorflowjs and some other useful libraries built in",
+    "dependencies": {
+        "@tensorflow/tfjs-node": "*",
+        "@tensorflow-models/coco-ssd": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dceejay/nrTensorflowjs/tree/master/"
+    },
+    "license": "Apache-2.0",
+    "keywords": [
+        "tensorflow",
+        "tensorflowjs"
+    ],
+    "node-red": {
+        "nodes": {
+            "tensorflowjs": "tfjs.js"
+        }
+    },
+    "author": {
+        "name": "Dave Conway-Jones",
+        "email": "ceejay@vnet.ibm.com",
+        "url": "http://nodered.org"
+    }
+}
