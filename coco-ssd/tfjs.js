@@ -91,9 +91,11 @@ module.exports = function (RED) {
                 node.send(msg);
             }
             try {
-                var p = msg.payload;
-                if (node.ready && typeof p === "string") { p = fs.readFileSync(p); }
-                reco(tf.node.decodeImage(p));
+                if (node.ready) {
+                    var p = msg.payload;
+                    if (typeof p === "string") { p = fs.readFileSync(p); }
+                    reco(tf.node.decodeImage(p));
+                }
             } catch (error) {
                 node.error(error, msg);
             }
