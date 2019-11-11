@@ -39,7 +39,7 @@ module.exports = function (RED) {
         }
 
         node.on('input', function (msg) {
-            msg.inputShape = node.shp;
+            msg.shape = node.shp;
             try {
                 imgToTensor(msg.payload)
                     .then(
