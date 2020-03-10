@@ -1,85 +1,243 @@
-﻿[
+[
   {
-    "id": "18783820.220bc",
-    "type": "tokens",
-    "z": "f24d3b69.c7a43",
-    "name": "tokenizer",
-    "x": 242,
-    "y": 255,
-    "wires": [
-      [
-        "a2d33080.4203e"
-      ]
-    ]
+    "id": "3b8fa5ec.1fd73a",
+    "type": "tab",
+    "label": "Flow 1",
+    "disabled": false,
+    "info": ""
   },
   {
-    "id": "e48f6b5d.7c9568",
-    "type": "debug",
-    "z": "f24d3b69.c7a43",
-    "name": "Show Sentiment",
-    "active": true,
-    "tosidebar": true,
-    "console": true,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "x": 549,
-    "y": 346,
-    "wires": []
+    "id": "1f334709.d4d571",
+    "type": "subflow",
+    "name": "BERT-Sentiment",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 280,
+        "y": 80,
+        "wires": [
+          {
+            "id": "cd8156a0.26d738"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 560,
+        "y": 80,
+        "wires": [
+          {
+            "id": "cd8156a0.26d738",
+            "port": 0
+          }
+        ]
+      },
+      {
+        "x": 600,
+        "y": 240,
+        "wires": [
+          {
+            "id": "e92b6478.317ae8",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "modelUrl",
+        "type": "str",
+        "value": "https://s3.us-south.cloud-object-storage.appdomain.cloud/max-assets-prod/max-text-sentiment-classifier/tfjs/0.1.0/model.json"
+      },
+      {
+        "name": "vocabUrl",
+        "type": "str",
+        "value": ""
+      }
+    ],
+    "color": "#DDAA99"
   },
   {
-    "id": "a2d33080.4203e",
-    "type": "bert-sentiment",
-    "z": "f24d3b69.c7a43",
-    "name": "Bert model",
-    "model": "http://localhost:3000/model/model.json",
-    "x": 248,
-    "y": 345,
-    "wires": [
-      [
-        "e48f6b5d.7c9568",
-        "b8009b27.8b5338"
-      ]
-    ]
+    "id": "48eb73de.4f19b4",
+    "type": "subflow",
+    "name": "Chart",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 160,
+        "y": 80,
+        "wires": [
+          {
+            "id": "b8009b27.8b5338"
+          }
+        ]
+      }
+    ],
+    "out": [],
+    "env": [],
+    "color": "#DDAA99"
+  },
+  {
+    "id": "f7a71d53.50b8f",
+    "type": "ui_group",
+    "z": "",
+    "name": "Twitter",
+    "tab": "ecb45bd0.ba2888",
+    "disp": true,
+    "width": "6",
+    "collapse": false
+  },
+  {
+    "id": "ecb45bd0.ba2888",
+    "type": "ui_tab",
+    "z": "",
+    "name": "Home",
+    "icon": "dashboard",
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "40fad7de.7fca88",
+    "type": "twitter-credentials",
+    "z": "",
+    "screen_name": ""
+  },
+  {
+    "id": "752a135f.c4951c",
+    "type": "ui_base",
+    "theme": {
+      "name": "theme-light",
+      "lightTheme": {
+        "default": "#0094CE",
+        "baseColor": "#0094CE",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": true,
+        "reset": false
+      },
+      "darkTheme": {
+        "default": "#097479",
+        "baseColor": "#097479",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": false
+      },
+      "customTheme": {
+        "name": "Untitled Theme 1",
+        "default": "#4B7930",
+        "baseColor": "#4B7930",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+      },
+      "themeState": {
+        "base-color": {
+          "default": "#0094CE",
+          "value": "#0094CE",
+          "edited": false
+        },
+        "page-titlebar-backgroundColor": {
+          "value": "#0094CE",
+          "edited": false
+        },
+        "page-backgroundColor": {
+          "value": "#fafafa",
+          "edited": false
+        },
+        "page-sidebar-backgroundColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "group-textColor": {
+          "value": "#1bbfff",
+          "edited": false
+        },
+        "group-borderColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "group-backgroundColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "widget-textColor": {
+          "value": "#111111",
+          "edited": false
+        },
+        "widget-backgroundColor": {
+          "value": "#0094ce",
+          "edited": false
+        },
+        "widget-borderColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "base-font": {
+          "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+        }
+      },
+      "angularTheme": {
+        "primary": "indigo",
+        "accents": "blue",
+        "warn": "red",
+        "background": "grey"
+      }
+    },
+    "site": {
+      "name": "Node-RED Dashboard",
+      "hideToolbar": "false",
+      "allowSwipe": "false",
+      "lockMenu": "false",
+      "allowTempTheme": "true",
+      "dateFormat": "DD/MM/YYYY",
+      "sizes": {
+        "sx": 48,
+        "sy": 48,
+        "gx": 6,
+        "gy": 6,
+        "cx": 6,
+        "cy": 6,
+        "px": 0,
+        "py": 0
+      }
+    }
   },
   {
     "id": "c3949f3e.18fc2",
     "type": "twitter in",
-    "z": "f24d3b69.c7a43",
+    "z": "3b8fa5ec.1fd73a",
     "twitter": "",
-    "tags": "#TensorFlow",
+    "tags": "",
     "user": "false",
     "name": "",
     "inputs": 1,
-    "x": 233,
-    "y": 33,
+    "x": 110,
+    "y": 60,
     "wires": [
       [
-        "cd8156a0.26d738"
+        "6363be2e.eac628"
       ]
     ]
   },
   {
     "id": "cd8156a0.26d738",
     "type": "function",
-    "z": "f24d3b69.c7a43",
+    "z": "1f334709.d4d571",
     "name": "Sanitize",
     "func": "function stripPunctuation(text){\n  text = text.replace(/[,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]/g,\"\");\n  text = text.replace(/[\\t\\n\\r]/g, \"\")\n  return text;\n}\nvar payload = msg.payload;\nmsg.payload = stripPunctuation(payload);\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 243,
-    "y": 161,
+    "x": 420,
+    "y": 80,
     "wires": [
       [
-        "18783820.220bc",
-        "bdaa63e3.e58d78"
+        "1bfdf5bf.e53a0a"
       ]
     ]
   },
   {
     "id": "bdaa63e3.e58d78",
     "type": "debug",
-    "z": "f24d3b69.c7a43",
+    "z": "3b8fa5ec.1fd73a",
     "name": "Show Tweet",
     "active": true,
     "tosidebar": true,
@@ -87,20 +245,20 @@
     "tostatus": false,
     "complete": "payload",
     "targetType": "msg",
-    "x": 504,
-    "y": 160,
+    "x": 670,
+    "y": 60,
     "wires": []
   },
   {
     "id": "b8009b27.8b5338",
     "type": "function",
-    "z": "f24d3b69.c7a43",
+    "z": "48eb73de.4f19b4",
     "name": "Total",
     "func": "var pos_count = context.get('pos_count')||0;\nvar neg_count = context.get('neg_count')||0;\nif (msg.payload==\"clear\") {\n    console.log(\"Reset count to 0.\")\n    pos_count = 0;\n    neg_count = 0;\n    context.set('pos_count',pos_count);\n    context.set('neg_count',neg_count);\n}\nif (msg.payload[\"positive\"] > 0.5) {\n    console.log(\"Positive\");\n    pos_count += 1;\n    // store the value back in context\n    context.set('pos_count',pos_count);\n    // put it in the outgoing msg object\n    msg.topic = \"Positive\";\n    msg.payload = pos_count;\n} \nif (msg.payload[\"negative\"] > 0.5){\n    console.log(\"Negative\");\n    neg_count += 1;\n    // store the value back in context\n    context.set('neg_count',neg_count);\n    // put it in the outgoing msg object\n    msg.topic = \"Negative\";\n    msg.payload = neg_count;\n}\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 450,
-    "y": 420,
+    "x": 290,
+    "y": 80,
     "wires": [
       [
         "4d29652.f1e4b9c"
@@ -110,7 +268,7 @@
   {
     "id": "4d29652.f1e4b9c",
     "type": "ui_chart",
-    "z": "f24d3b69.c7a43",
+    "z": "48eb73de.4f19b4",
     "name": "Chart",
     "group": "f7a71d53.50b8f",
     "order": 0,
@@ -143,8 +301,8 @@
     ],
     "useOldStyle": false,
     "outputs": 1,
-    "x": 610,
-    "y": 420,
+    "x": 470,
+    "y": 80,
     "wires": [
       []
     ]
@@ -152,7 +310,7 @@
   {
     "id": "b55a6ff7.0a06e",
     "type": "inject",
-    "z": "f24d3b69.c7a43",
+    "z": "48eb73de.4f19b4",
     "name": "Reset count",
     "topic": "",
     "payload": "clear",
@@ -161,8 +319,8 @@
     "crontab": "",
     "once": false,
     "onceDelay": 0.1,
-    "x": 250,
-    "y": 460,
+    "x": 190,
+    "y": 200,
     "wires": [
       [
         "b8009b27.8b5338"
@@ -172,7 +330,7 @@
   {
     "id": "e7174316.01a0b",
     "type": "inject",
-    "z": "f24d3b69.c7a43",
+    "z": "48eb73de.4f19b4",
     "name": "Clear chart",
     "topic": "",
     "payload": "[]",
@@ -181,8 +339,8 @@
     "crontab": "",
     "once": false,
     "onceDelay": 0.1,
-    "x": 440,
-    "y": 540,
+    "x": 380,
+    "y": 200,
     "wires": [
       [
         "4d29652.f1e4b9c"
@@ -190,22 +348,103 @@
     ]
   },
   {
-    "id": "f7a71d53.50b8f",
-    "type": "ui_group",
-    "z": "",
-    "name": "Twitter",
-    "tab": "ecb45bd0.ba2888",
-    "disp": true,
-    "width": "6",
-    "collapse": false
+    "id": "1bfdf5bf.e53a0a",
+    "type": "bert-tokenizer",
+    "z": "1f334709.d4d571",
+    "name": "",
+    "url": "${vocabUrl}",
+    "x": 200,
+    "y": 160,
+    "wires": [
+      [
+        "f8e669a0.465498"
+      ]
+    ]
   },
   {
-    "id": "ecb45bd0.ba2888",
-    "type": "ui_tab",
-    "z": "",
-    "name": "Home",
-    "icon": "dashboard",
-    "disabled": false,
-    "hidden": false
+    "id": "2fba5a1f.c499ae",
+    "type": "tf-model",
+    "z": "1f334709.d4d571",
+    "modelURL": "${modelUrl}",
+    "outputNode": "loss/Softmax",
+    "name": "BERT Sentiment Model",
+    "x": 210,
+    "y": 240,
+    "wires": [
+      [
+        "e92b6478.317ae8"
+      ]
+    ]
+  },
+  {
+    "id": "f8e669a0.465498",
+    "type": "tf-function",
+    "z": "1f334709.d4d571",
+    "name": "To named tensor map",
+    "func": "\nreturn {\n    payload:\n    {\n    input_ids_1 : tf.tensor(msg.payload.inputIds, [1,128], \"int32\"),\n    segment_ids_1 : tf.tensor(msg.payload.segmentIds, [1,128], \"int32\"),\n    input_mask_1 : tf.tensor(msg.payload.inputMask, [1,128],\"int32\")\n    }\n};",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 500,
+    "y": 160,
+    "wires": [
+      [
+        "2fba5a1f.c499ae"
+      ]
+    ]
+  },
+  {
+    "id": "e92b6478.317ae8",
+    "type": "tf-function",
+    "z": "1f334709.d4d571",
+    "name": "Post Processing",
+    "func": "const res = tf.tidy( () => {\n    return msg.payload.squeeze([0]).arraySync()\n    \n})\nreturn {payload: {positive: res[0],\n                  negative: res[1]}\n        }\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 440,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6363be2e.eac628",
+    "type": "subflow:1f334709.d4d571",
+    "z": "3b8fa5ec.1fd73a",
+    "name": "BERT-Sentiment",
+    "env": [],
+    "x": 320,
+    "y": 60,
+    "wires": [
+      [
+        "bdaa63e3.e58d78"
+      ],
+      [
+        "5a473c82.65a0a4",
+        "9a17644c.e4b9a"
+      ]
+    ]
+  },
+  {
+    "id": "5a473c82.65a0a4",
+    "type": "subflow:48eb73de.4f19b4",
+    "z": "3b8fa5ec.1fd73a",
+    "x": 650,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "9a17644c.e4b9a",
+    "type": "debug",
+    "z": "3b8fa5ec.1fd73a",
+    "name": "Show Prediction",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 670,
+    "y": 140,
+    "wires": []
   }
 ]
