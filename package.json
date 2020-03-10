@@ -4,28 +4,26 @@
   "description": "A Node-RED application to use bert-tokenizer and bert-sentiment",
   "main": "",
   "scripts": {
-    "start": "concurrently \"node node_modules/bert-sentiment-tfjs/dist/server/index.js\" \"node-red -s settings.js flow.json\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node-red flow.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tonanhngo/nodered-tfjs.git"
   },
   "author": "Ton Ngo",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/tonanhngo/nodered-tfjs/issues"
   },
   "homepage": "https://github.com/tonanhngo/nodered-tfjs#readme",
   "dependencies": {
-    "concurrently": "^5.0.0",
+    "@tensorflow/tfjs-node": "^1.6.0",
     "node-red": "^1.0.1",
-    "node-red-bert-sentiment": "file:bert-sentiment",
-    "node-red-bert-tokens": "file:bert-tokenizer",
-    "node-red-contrib-browser-utils": "0.0.9",
-    "node-red-contrib-totaliser": "0.0.9",
-    "node-red-dashboard": "^2.17.1",
-    "node-red-node-twitter": "^1.1.5",
+    "node-red-contrib-bert-tokenizer": "^1.0.1",
+    "node-red-contrib-tf-function": "^0.1.0",
+    "node-red-contrib-tf-model": "^0.1.4",
+    "node-red-dashboard": "^2.19.4",
+    "node-red-node-twitter": "^1.1.6",
     "twitter": "^1.7.1"
   }
 }
