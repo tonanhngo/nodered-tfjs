@@ -1,39 +1,35 @@
 <script type="text/javascript">
     RED.nodes.registerType('object-detection',{
         category: 'analysis-function',
-        color: '#FF9BF6',
+        color: "#EF9730",
+        icon: "tfjs.png",
         defaults: {
             name: { value: "Object Detection Model" },
             modelUrl: { value: "" }
         },
         inputs:1,
         outputs:1,
-        icon: "font-awesome/fa-object-group",
         label: function() {
             return this.name||"object-detection";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="object-detection">
+<script type="text/html" data-template-name="object-detection">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Node name">
     </div>
     <div class="form-row">
         <label for="node-input-model"><i class="fa fa-globe"></i> Model URL</label>
         <input type="text" id="node-input-modelUrl" placeholder="e.g. http://localhost/model/model.json...">
     </div>
-    <div>
-      <small>
-        If no URL is specified, then a model will be downloaded from a default public endpoint.
-      </small>
-    </div>
+    <div class="form-tips">If no URL is specified, then a model will be downloaded from a default public endpoint.</div>
 </script>
 
-<script type="text/x-red" data-help-name="object-detection">
+<script type="text/html" data-help-name="object-detection">
     <p>
-      Localize and identify multiple objects in a single image. This uses the TensorFlow.js port
+      Localize and identify multiple objects in a single image. By default this uses the TensorFlow.js port
       of the COCO-SSD model. This model is capable of detecting 90 classes of objects.
     </p>
 </script>
